@@ -1,5 +1,7 @@
 # NACRE-MLH pipeline
 
+[![image](https://img.shields.io/badge/ghcr.io-nacre--mlh%3A1.0.0-blue?logo=docker)](https://github.com/njabuloshong1/NACRE-MLH/pkgs/container/nacre-mlh)
+
 Consensus cell-type annotation with a resolution certificate, for **Xenium**, **MERSCOPE** and
 **CosMx**.
 
@@ -38,16 +40,26 @@ candidates, then argmax. It cannot invent a cell type none of them suggested.
 
 ### With Docker (nothing to install)
 
-The image carries R, Python and every annotator dependency.
+The image carries R, Python and every annotator dependency: Seurat, RCTD, SingleR, zellkonverter,
+torch and the rest. Nothing is installed on your machine and no versions have to match.
 
 ```bash
-docker build -t nacre-mlh .
+docker pull ghcr.io/njabuloshong1/nacre-mlh:1.0.0
 
 docker run --rm --gpus all -m 32g \
   -v /path/to/data:/data:ro \
   -v /path/to/results:/results \
   -v "$PWD":/work \
-  nacre-mlh --config /work/runs.csv --out /results
+  ghcr.io/njabuloshong1/nacre-mlh:1.0.0 --config /work/runs.csv --out /results
+```
+
+Prefer a specific tag over `:latest` for anything whose results you intend to keep, so a rerun
+months from now uses the same annotators.
+
+To build it yourself instead of pulling (about 25 minutes, mostly compiling Seurat and spacexr):
+
+```bash
+docker build -t nacre-mlh .
 ```
 
 Paths in your run sheet must be the paths **inside** the container (`/data/...`), not host paths.
