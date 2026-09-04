@@ -10,6 +10,35 @@ no agreement are reported as unresolved rather than given a label the data does 
 
 ---
 
+## How the resolver works
+
+The four annotators agree on most cells. Where they split, a small network decides, trained on the
+cells they *did* agree on:
+
+![Resolver architecture](docs/resolver_architecture.png)
+
+Each cell becomes a feature vector of its expression (50-component SVD, z-scored), its position, and
+the cell-type composition of its 15 nearest neighbours. `d` and `C` depend on your reference, so
+the diagram names them rather than fixing numbers.
+
+Two properties are worth knowing, because they bound what the resolver can do:
+
+**It only ever trains on confident cells.** The 4/4 and 3/1 cells supply the labels; the contested
+cells are never in training and are exactly what the trained network predicts. So the resolver
+generalises the annotators' own agreement rather than inventing a new opinion.
+
+**Its output is restricted to what the annotators proposed.** At inference the softmax is masked to
+the candidate labels the four tools actually put forward for that cell, then argmax. It cannot
+invent a cell type none of them suggested.
+
+Regenerate the figure after changing the architecture:
+
+```
+python docs/mlp_diagram.py
+```
+
+---
+
 ## Running it
 
 ### With Docker (nothing to install)

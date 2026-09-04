@@ -27,3 +27,6 @@ __pycache__/
 *.pyc
 .Rhistory
 .RData
+
+# but the architecture diagram is documentation, not a run output
+!docs/resolver_architecture.png
