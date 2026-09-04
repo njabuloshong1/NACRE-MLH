@@ -1,6 +1,6 @@
 # NACRE-MLH pipeline
 
-[![image](https://img.shields.io/badge/ghcr.io-nacre--mlh%3A1.0.0-blue?logo=docker)](https://github.com/njabuloshong1/NACRE-MLH/pkgs/container/nacre-mlh)
+[![image](https://img.shields.io/badge/ghcr.io-nacre--mlh%3A1.0.0-blue?logo=docker)](https://github.com/users/njabuloshong1/packages/container/package/nacre-mlh)
 
 Consensus cell-type annotation with a resolution certificate, for **Xenium**, **MERSCOPE** and
 **CosMx**.
