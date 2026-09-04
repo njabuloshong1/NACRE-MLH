@@ -1,0 +1,29 @@
+# Secrets. key.txt holds a live API key: it must never be committed.
+key.txt
+*.key
+.env
+
+# Not published yet: the citation file still carries placeholder authors, and a half-filled one is
+# worse than none. Add it back when the real attribution exists.
+CITATION.cff
+
+# Run sheets carry local paths and sometimes dataset names that are not ours to publish.
+# runs.template.csv is the one that ships; keep personal sheets out.
+runs.csv
+runs_*.csv
+!runs.template.csv
+
+# Outputs
+results/
+*.h5ad
+*.rds
+*.png
+*.docx
+SUMMARY.md
+summary_*.csv
+
+# Caches
+__pycache__/
+*.pyc
+.Rhistory
+.RData

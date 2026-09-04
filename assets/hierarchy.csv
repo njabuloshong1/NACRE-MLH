@@ -1,0 +1,40 @@
+label,lineage,compartment
+B,B/Plasma,Lymphoid
+CD4T,T cell,Lymphoid
+CD8T,T cell,Lymphoid
+DC,Dendritic cell,Myeloid
+Endothelial,Endothelial,Stromal
+Epithelial,Epithelial,Epithelial
+Fibroblast,Mesenchymal,Stromal
+Hepatocyte,Epithelial,Epithelial
+Kupffer,Macrophage/Monocyte,Myeloid
+Macrophage,Macrophage/Monocyte,Myeloid
+Mast,Mast,Myeloid
+Monocyte,Macrophage/Monocyte,Myeloid
+Myoepithelial,Epithelial,Epithelial
+NK,NK/ILC,Lymphoid
+Neutrophil,Granulocyte,Myeloid
+Perivascular,Mesenchymal,Stromal
+Plasma,B/Plasma,Lymphoid
+SMC,Mesenchymal,Stromal
+Stromal,Mesenchymal,Stromal
+Tprolif,T cell,Lymphoid
+Tumor,Epithelial,Epithelial
+cDC1,Dendritic cell,Myeloid
+cDC2,Dendritic cell,Myeloid
+mregDC,Dendritic cell,Myeloid
+pDC,Dendritic cell,Myeloid
+CD19+CD20+ B Lymphocytes,B/Plasma,Lymphoid
+CD4+ T cells,T cell,Lymphoid
+CD8+ T cells,T cell,Lymphoid
+Dendritic Cells,Dendritic cell,Myeloid
+Epithelial Cells,Epithelial,Epithelial
+IgG+ B-Lymphocytes,B/Plasma,Lymphoid
+Mast cells,Mast,Myeloid
+Myofibroblasts,Mesenchymal,Stromal
+NK Cells,NK/ILC,Lymphoid
+Pericytes,Mesenchymal,Stromal
+Plasmacytoid Dendritic Cells (pDCs),Dendritic cell,Myeloid
+Regulatory T cells,T cell,Lymphoid
+SPP1+ Macrophages,Macrophage/Monocyte,Myeloid
+StalkECs-Endothelial Cells,Endothelial,Stromal

@@ -1,0 +1,25 @@
+# Python dependencies for the NACRE-MLH pipeline.
+# Lower bounds are what the pipeline needs; upper bounds mark where an incompatibility is known.
+
+anndata>=0.9,<0.13
+h5py>=3.7
+
+# The learned resolver is a small MLP. It uses CUDA when a GPU is present and falls back to CPU
+# otherwise, so a CPU-only build is sufficient. In the Docker image torch is installed separately
+# from the CPU wheel index, which is a fraction of the size of the default CUDA build.
+torch>=1.13
+numpy>=1.22,<3
+pandas>=1.5,<3
+scipy>=1.9
+scikit-learn>=1.1
+matplotlib>=3.6
+psutil>=5.9              # free-memory reading; without it chunk sizing falls back to a guess
+
+# Optional, each degrading gracefully if absent.
+umap-learn>=0.5          # UMAP panel; without it the figure falls back to an SVD projection
+python-docx>=0.8         # the .docx report; CSVs and SUMMARY.md are written regardless
+
+# openai 2.x pulls httpx2, whose decompressor raises
+#   TypeError: process() takes no keyword arguments
+# on every response. Needed only to extend the hierarchy for unfamiliar cell-type names.
+openai>=1.30,<2

@@ -1,0 +1,27 @@
+# Secrets must never enter an image layer: they persist even if a later layer deletes them.
+key.txt
+*.key
+.env
+
+# Personal run sheets. runs.template.csv is the one that ships.
+runs.csv
+runs_*.csv
+!runs.template.csv
+
+# Data and outputs belong on mounted volumes, not baked into the image.
+results/
+data/
+*.h5ad
+*.rds
+*.mtx
+*.png
+*.docx
+SUMMARY.md
+summary_*.csv
+
+.git/
+.gitignore
+__pycache__/
+*.pyc
+.Rhistory
+.RData

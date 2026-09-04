@@ -1,0 +1,34 @@
+# Convenience wrapper so a run is one command with the mounts already right.
+#
+#   docker compose run --rm nacre --config /work/runs.csv --out /results
+#
+# Edit the two host paths below, then everything else follows.
+
+services:
+  nacre:
+    build: .
+    image: nacre-mlh:latest
+    volumes:
+      # read-only: the pipeline never writes to your data
+      - ${NACRE_DATA:-./data}:/data:ro
+      - ${NACRE_RESULTS:-./results}:/results
+      # your run sheet, and the key file if you use one
+      - ./:/work
+    environment:
+      # Needed only to extend the hierarchy for cell-type names the shipped one has not seen.
+      # Set it in a .env file or your shell; never commit it.
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    # The chunk planner reads this limit rather than the host's memory, so set it to what you are
+    # willing to give the run. Without it the container sees all host memory and may over-commit.
+    mem_limit: ${NACRE_MEM:-32g}
+    shm_size: 2g
+    # The resolver uses a GPU when one is passed through. Harmless to leave in place on a machine
+    # without one: the deploy block is ignored and the run falls back to CPU.
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: ["--help"]

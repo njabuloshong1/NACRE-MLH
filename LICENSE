@@ -1,0 +1,37 @@
+MIT License
+
+Copyright (c) 2026 NACRE-MLH authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+NACRE-MLH calls the following tools, each under its own licence. Installing or
+distributing an image containing them means accepting those terms:
+
+  Seurat      MIT
+  SingleR     GPL-3
+  scuttle     GPL-3
+  spacexr     GPL-3        (RCTD)
+  celldex     GPL-3
+  zellkonverter                 MIT
+  SingleCellExperiment          GPL-3
+
+Because spacexr, SingleR, scuttle and celldex are GPL-3, a distributed image
+containing them is subject to GPL-3 terms for those components.
