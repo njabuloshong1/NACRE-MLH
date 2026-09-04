@@ -54,7 +54,14 @@ NACRE_DATA=/path/to/data NACRE_RESULTS=/path/to/results \
 ### Without Docker
 
 ```
-python run_pipeline.py --config runs.csv --out E:/results/my_runs
+python run_pipeline.py --config runs.csv
+```
+
+Results go to `./results` next to the script. Put them somewhere else with `--out`:
+
+```
+python run_pipeline.py --config runs.csv --out /path/to/results        # Linux, macOS
+python run_pipeline.py --config runs.csv --out D:\work\results         # Windows
 ```
 
 That is the whole thing. Everything below is optional.
@@ -78,24 +85,27 @@ One row per dataset. CSV, TSV, or a plain text file, whichever you find easier t
 
 ```csv
 name,platform,query,reference,ref_label,truth,skip
-MyBreast,X,D:/data/xenium_run,D:/refs/breast_ref.h5ad,celltype,,
-MyOvary,C,D:/data/cosmx_export,D:/refs/ovarian_ref.h5ad,Cluster_Detailed,ori_celltype,
-MyLung,M,D:/data/merscope_run,D:/refs/lung_ref.h5ad,,,y
+MyBreast,X,data/xenium_run,refs/breast_ref.h5ad,celltype,,
+MyOvary,C,data/cosmx_export,refs/ovarian_ref.h5ad,Cluster_Detailed,ori_celltype,
+MyLung,M,data/merscope_run,refs/lung_ref.h5ad,,,y
 ```
+
+Paths may be relative to where you run the script, or absolute in whatever form your system uses
+(`/home/you/data`, `D:\data`, `D:/data` — forward slashes work on Windows too).
 
 or, if you prefer:
 
 ```
 [MyBreast]
 platform  = xenium
-query     = D:/data/xenium_run
-reference = D:/refs/breast_ref.h5ad
+query     = data/xenium_run
+reference = refs/breast_ref.h5ad
 ref_label = celltype
 
 [MyOvary]
 platform  = cosmx
-query     = D:/data/cosmx_export
-reference = D:/refs/ovarian_ref.h5ad
+query     = data/cosmx_export
+reference = refs/ovarian_ref.h5ad
 ```
 
 | Column | Required | Meaning |

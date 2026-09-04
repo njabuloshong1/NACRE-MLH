@@ -14,9 +14,14 @@
 
 FROM bioconductor/bioconductor_docker:RELEASE_3_18
 
+# image.source is what makes a registry link the published package back to its repository; without
+# it a GHCR package appears orphaned, with no README and no route back to the code.
 LABEL org.opencontainers.image.title="NACRE-MLH" \
       org.opencontainers.image.description="Consensus cell-type annotation with a resolution \
 certificate, for Xenium, MERSCOPE and CosMx." \
+      org.opencontainers.image.source="https://github.com/njabuloshong1/NACRE-MLH" \
+      org.opencontainers.image.url="https://github.com/njabuloshong1/NACRE-MLH" \
+      org.opencontainers.image.version="1.0.0" \
       org.opencontainers.image.licenses="MIT"
 
 ENV DEBIAN_FRONTEND=noninteractive \

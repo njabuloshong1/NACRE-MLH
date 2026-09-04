@@ -143,12 +143,26 @@ def load(path):
             raise ConfigError(f"{where}: name '{r['name']}' must be letters, digits, . _ or - only")
 
         # Paths are checked now rather than an hour into the annotators.
+        #
+        # A relative path is resolved against the run sheet's own directory first, and only then
+        # against the working directory. That way a sheet kept beside the data works whether it is
+        # launched from that folder, from the install directory, or from anywhere else; resolving
+        # only against the working directory makes the same sheet succeed or fail depending on
+        # where the user happened to be standing.
+        sheet_dir = os.path.dirname(os.path.abspath(path))
         for k in ("query", "reference", "truth_file"):
             if not r.get(k):
                 continue
-            r[k] = os.path.abspath(os.path.expandvars(os.path.expanduser(r[k])))
-            if not os.path.exists(r[k]):
-                raise ConfigError(f"{where}: {k} does not exist: {r[k]}")
+            raw = os.path.expandvars(os.path.expanduser(r[k]))
+            if os.path.isabs(raw):
+                cands = [raw]
+            else:
+                cands = [os.path.join(sheet_dir, raw), os.path.abspath(raw)]
+            hit = next((os.path.abspath(c) for c in cands if os.path.exists(c)), None)
+            if hit is None:
+                tried = "\n      tried: " + "\n      tried: ".join(os.path.abspath(c) for c in cands)
+                raise ConfigError(f"{where}: {k} does not exist: {r[k]}{tried}")
+            r[k] = hit
         for k in ("min_counts", "min_umi"):
             if k in r:
                 try:
@@ -177,9 +191,12 @@ TEMPLATE = """\
 # looks for a likely label column in your query. With none of the three, accuracy is simply not
 # reported and everything else runs the same.
 #
+# Paths may be relative to where you run the script, or absolute in whatever form your system
+# uses: /home/you/data, D:\\data, or D:/data (forward slashes work on Windows too).
+#
 name,platform,query,reference,ref_label,truth,truth_file,skip
-MyXenium,X,D:/data/xenium_run,D:/refs/breast_ref.h5ad,celltype,,,
-MyCosMx,C,D:/data/cosmx_export,D:/refs/ovarian_ref.h5ad,Cluster_Detailed,ori_celltype,,
-MyLabelled,X,D:/data/other_run,D:/refs/ref.h5ad,,cell_type,D:/data/my_labels.csv,
-MyMERSCOPE,M,D:/data/merscope_run,D:/refs/lung_ref.h5ad,,,,y
+MyXenium,X,data/xenium_run,refs/breast_ref.h5ad,celltype,,,
+MyCosMx,C,data/cosmx_export,refs/ovarian_ref.h5ad,Cluster_Detailed,ori_celltype,,
+MyLabelled,X,data/other_run,refs/ref.h5ad,,cell_type,data/my_labels.csv,
+MyMERSCOPE,M,data/merscope_run,refs/lung_ref.h5ad,,,,y
 """

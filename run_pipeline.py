@@ -1,6 +1,7 @@
 """NACRE-MLH pipeline. One command, a run sheet, and everything else is produced for you.
 
-    python run_pipeline.py --config runs.csv --out E:/results/mynewruns
+    python run_pipeline.py --config runs.csv                  # results go to ./results
+    python run_pipeline.py --config runs.csv --out somewhere/else
 
 The run sheet names, per dataset, the platform, the query and the reference. Nothing else is
 required. An LLM key is needed only when a reference uses cell-type names the shipped hierarchy has

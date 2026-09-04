@@ -1,0 +1,29 @@
+# This repo is edited on Windows but builds and runs a Linux container, so line endings have to be
+# pinned. A Dockerfile or shell script checked out with CRLF can fail inside the image in ways that
+# are hard to read (a trailing \r becomes part of the command).
+#
+# Everything text is normalised to LF in the repository; these entries also force LF in the working
+# copy, so a file is byte-identical whether it was written on Windows, macOS or Linux.
+
+* text=auto eol=lf
+
+Dockerfile      text eol=lf
+*.sh            text eol=lf
+*.R             text eol=lf
+*.py            text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.csv           text eol=lf
+*.md            text eol=lf
+*.txt           text eol=lf
+*.cff           text eol=lf
+
+# Never touched: binary formats corrupt if line endings are rewritten.
+*.h5ad          binary
+*.rds           binary
+*.png           binary
+*.docx          binary
+*.mtx           binary
+*.zip           binary
+*.gz            binary
+*.tar           binary

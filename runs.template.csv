@@ -12,8 +12,11 @@
 # looks for a likely label column in your query. With none of the three, accuracy is simply not
 # reported and everything else runs the same.
 #
+# Paths may be relative to where you run the script, or absolute in whatever form your system
+# uses: /home/you/data, D:\data, or D:/data (forward slashes work on Windows too).
+#
 name,platform,query,reference,ref_label,truth,truth_file,skip
-MyXenium,X,D:/data/xenium_run,D:/refs/breast_ref.h5ad,celltype,,,
-MyCosMx,C,D:/data/cosmx_export,D:/refs/ovarian_ref.h5ad,Cluster_Detailed,ori_celltype,,
-MyLabelled,X,D:/data/other_run,D:/refs/ref.h5ad,,cell_type,D:/data/my_labels.csv,
-MyMERSCOPE,M,D:/data/merscope_run,D:/refs/lung_ref.h5ad,,,,y
+MyXenium,X,data/xenium_run,refs/breast_ref.h5ad,celltype,,,
+MyCosMx,C,data/cosmx_export,refs/ovarian_ref.h5ad,Cluster_Detailed,ori_celltype,,
+MyLabelled,X,data/other_run,refs/ref.h5ad,,cell_type,data/my_labels.csv,
+MyMERSCOPE,M,data/merscope_run,refs/lung_ref.h5ad,,,,y
